@@ -20,6 +20,8 @@ import lombok.Setter;
 //Class de autorização do spring security
 public class Acesso implements GrantedAuthority {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "seq_acesso")
 	private Long id;
@@ -30,6 +32,4 @@ public class Acesso implements GrantedAuthority {
 	public String getAuthority() {
 		return this.descricao;
 	}
-
-	
 }
