@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lojavirtual.enums.StatusContaReceber;
 
 import lombok.EqualsAndHashCode;
@@ -52,6 +53,7 @@ public class ContaReceber implements Serializable {
 
 	private BigDecimal valorDesconto;
 
+	@JsonIgnore
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private Pessoa pessoa;

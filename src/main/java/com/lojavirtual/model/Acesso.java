@@ -26,7 +26,7 @@ public class Acesso implements GrantedAuthority {
 	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "seq_acesso")
 	private Long id;
 	@Column(nullable = false)//Anotacao para dizer que descricao precisa ser obrigatorio
-	private String descricao; // Acesso ex: ROLE_ADMIN ou ROLE_SECRETARIO
+	private String descricao; 
 
 	@Override
 	public String getAuthority() {

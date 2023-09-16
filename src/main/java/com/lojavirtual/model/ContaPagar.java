@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lojavirtual.enums.StatusContaPagar;
 
 import lombok.EqualsAndHashCode;
@@ -49,11 +50,13 @@ public class ContaPagar implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusContaPagar status;
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "pessoa_Fornecedor_id", nullable = false, foreignKey = @ForeignKey(
 			    value = ConstraintMode.CONSTRAINT, name = "pessoa_Fornecedor_fk"))
 	private Pessoa pessoa_fornecedor;
-
+	
+	@JsonIgnore
 	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(
 			    value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))

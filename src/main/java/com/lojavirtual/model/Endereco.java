@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lojavirtual.enums.TipoEndereco;
 
 import lombok.EqualsAndHashCode;
@@ -41,6 +42,7 @@ public class Endereco implements Serializable {
 	private String uf;
 	private String cidade;
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity = Pessoa.class)//Muitos endereço  para uma pessoa, para class Pessoa.
 	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private Pessoa pessoa;

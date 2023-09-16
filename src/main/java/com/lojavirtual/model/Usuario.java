@@ -22,6 +22,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,7 +47,9 @@ public class Usuario implements UserDetails {
 	@Temporal(TemporalType.DATE)
 	private Date dataAtualSenha;
 	
+	
 	/*Criação do jointable (União de tabelas) para registrar acesso de usuario e seus acessos "Spring Security" */
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "usuarios_acesso", 
 	     uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "acesso_id"},

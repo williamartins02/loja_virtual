@@ -14,6 +14,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +41,7 @@ public abstract class Pessoa implements Serializable {
         
         protected String telefone;
         
+        @JsonIgnore
         //orphanRemoval -> remover os enderecço em cascata quando a pessoa assoaciada for deletada.
         @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     	private List<Endereco> enderecos = new ArrayList<Endereco>();
