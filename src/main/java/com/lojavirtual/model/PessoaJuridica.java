@@ -21,6 +21,7 @@ public class PessoaJuridica extends Pessoa {
 	
 	@Column(unique = true)
 	private String cnpj;
+	
 	private String inscEstadual;
 	private String inscMunicipal;
 	private String nomeFantasia;
