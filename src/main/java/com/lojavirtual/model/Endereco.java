@@ -1,6 +1,8 @@
 package com.lojavirtual.model;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -34,12 +36,23 @@ public class Endereco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_endereco")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String ruaLogra;
+	
+	@Column(nullable = false)
 	private String cep;
+	
+	@Column(nullable = false)
 	private String numero;
 	private String complemento;
+	
+	@Column(nullable = false)
 	private String bairro;
+	
+	@Column(nullable = false)
 	private String uf;
+	
+	@Column(nullable = false)
 	private String cidade;
 	
 	@JsonIgnore
@@ -47,6 +60,7 @@ public class Endereco implements Serializable {
 	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
 	private Pessoa pessoa;
 	
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoEndereco tipoEndereco;
 

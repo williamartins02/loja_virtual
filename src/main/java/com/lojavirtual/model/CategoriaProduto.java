@@ -2,14 +2,13 @@ package com.lojavirtual.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.springframework.data.relational.core.mapping.Column;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,7 +26,7 @@ public class CategoriaProduto implements Serializable {
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_categoria_produto")
         private Long id;
         
-        @Column(value = "nome_descricao")
+        @Column(name = "nome_descricao", nullable = false)
         private String  nomeDesc;
         
 }

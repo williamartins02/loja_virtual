@@ -2,6 +2,7 @@ package com.lojavirtual.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -32,6 +33,7 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_item_venda_loja")
 	private Long id;
 	
+	@Column(nullable = false)
 	private Double quantidade;
 	
 	@JsonIgnore

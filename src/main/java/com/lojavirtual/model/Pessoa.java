@@ -34,11 +34,14 @@ public abstract class Pessoa implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pessoa")
         protected Long id;
+        
+        @Column(nullable = false)
         protected String nome;
         
-        @Column(unique = true)
+        @Column(nullable = false)
         protected String email;
         
+        @Column(nullable = false)
         protected String telefone;
         
         @JsonIgnore
