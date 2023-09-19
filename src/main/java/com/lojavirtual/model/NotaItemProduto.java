@@ -21,7 +21,7 @@ import lombok.ToString;
 @Getter @Setter @ToString @EqualsAndHashCode
 @Entity
 @Table(name = "nota_item_produto")
-@SequenceGenerator(name = "seq_nota_fiscal_compra", sequenceName = "seq_nota_item_produto", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_nota_item_produto", sequenceName = "seq_nota_item_produto", allocationSize = 1, initialValue = 1)
 public class NotaItemProduto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class NotaItemProduto implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "nota_fiscal_produto_id", nullable = false, foreignKey = @ForeignKey(
 			value = ConstraintMode.CONSTRAINT, name = "nota_fiscal_produto_fk"))
-	private NotaFiscalCompra noFiscalCompra;
+	private NotaFiscalCompra notaFiscalCompra;
 	
 	
 	@JsonIgnore

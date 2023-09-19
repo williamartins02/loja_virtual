@@ -48,9 +48,6 @@ public abstract class Pessoa implements Serializable {
         //orphanRemoval -> remover os enderecço em cascata quando a pessoa assoaciada for deletada.
         @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     	private List<Endereco> enderecos = new ArrayList<Endereco>();
-        
-        
-        
-      
+            
         
 }

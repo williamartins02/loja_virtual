@@ -4,31 +4,31 @@ package com.lojavirtual.enums;
 
 public enum TipoEndereco {
 	
-	COBRANCA (0,"Cobrança"), ENTREGA (1,"Entrega");
+	COBRANCA ("Cobrança"), ENTREGA ("Entrega");
 	
 	
-	private Integer codigo;
+	//private Integer codigo;
 	private String descricao;
 	
-	private TipoEndereco(Integer codigo, String descricao) {
+	private TipoEndereco(String descricao) {
 		
-		this.codigo = codigo;
+		//this.codigo = codigo;
 		this.descricao = descricao;
 	}
 	
-	public Integer getCodigo() {
-		return codigo;
-	}
+	//public Integer getCodigo() {
+		//return codigo;
+	//}
 	public String getDescricao() {
 		return descricao;
 	}
 	
-	public static TipoEndereco toEnum(Integer cod) {
-		if(cod == null) {
+	public static TipoEndereco toEnum(String descricao) {
+		if(descricao == null) {
 			return null;
 		}
 		for(TipoEndereco t: TipoEndereco.values()) {
-			if(cod.equals(t.getCodigo())) {
+			if(descricao.equals(t.getDescricao())) {
 				return t;
 			}
 		}
