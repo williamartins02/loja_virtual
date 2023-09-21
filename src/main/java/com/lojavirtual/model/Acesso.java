@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "acesso")
 @SequenceGenerator(name = "seq_acesso", sequenceName = "seq_acesso", allocationSize = 1, initialValue = 1)
-//Class de autorização do spring security
+
 public class Acesso implements GrantedAuthority {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class Acesso implements GrantedAuthority {
 	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "seq_acesso")
 	private Long id;
 	
-	@Column(nullable = false)//Anotacao para dizer que descricao precisa ser obrigatorio
+	@Column(nullable = false)
 	private String descricao; 
 
 	@Override
