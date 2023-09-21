@@ -56,7 +56,7 @@ public class Usuario implements UserDetails {
 	
 	/*Criação do jointable (União de tabelas) para registrar acesso de usuario e seus acessos "Spring Security" */
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_acesso", 
 	     uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "acesso_id"},
 	     name = "unique_acesso_user"), 

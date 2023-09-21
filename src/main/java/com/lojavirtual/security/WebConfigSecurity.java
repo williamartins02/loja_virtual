@@ -46,11 +46,9 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements H
 		.and().addFilterAfter(new JWTLoginFilter("/login", authenticationManager()),
 				UsernamePasswordAuthenticationFilter.class)
 		
-		.addFilterBefore(new JwtApiAutenticacaoFilte(), UsernamePasswordAuthenticationFilter.class);
+		.addFilterBefore(new JwtApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
 		
 	}
-	
-	
 	/*Irá consultar o user no banco com Spring Security*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,8 +56,6 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements H
 		
 	}
 	
-	
-
 	/*Ignora alguas URL livre de autenticação*/
 	@Override
 	public void configure(WebSecurity web) throws Exception {

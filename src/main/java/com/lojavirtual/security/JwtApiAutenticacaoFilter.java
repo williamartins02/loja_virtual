@@ -14,7 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 /*Filtro onde todas as requisicoes serão capturadas para autenticar*/
-public class JwtApiAutenticacaoFilte extends GenericFilterBean {
+public class JwtApiAutenticacaoFilter extends GenericFilterBean {
 
 	
 	@Override

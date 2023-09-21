@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -19,8 +19,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 
-
-
 /*Criar a autenticação e retonar também a autenticação JWT*/
 @Service
 @Component
@@ -28,14 +26,18 @@ public class JWTTokenAutenticacaoService {
 	
 	
 	/*Token de validade de 11 dias*/
-	private static final long EXPIRATION_TIME = 959990000;
+	@Value("${jwt.expiration}")
+	private Long EXPIRATION_TIME;
 	
 	/*Chave de senha para juntar com o JWT*/
-	private static final String SECRET = "ss/-*-*sds565dsd-s/d-s*dsds";
+	@Value("${jwt.secret}")
+	private String SECRET;
 	
+
 	private static final String TOKEN_PREFIX = "Bearer";
 	
 	private static final String HEADER_STRING = "Authorization";
+
 	
 	/*Gera o token e da a responsta para o cliente o com JWT*/
 	public void addAuthentication(HttpServletResponse response, String username) throws Exception {
