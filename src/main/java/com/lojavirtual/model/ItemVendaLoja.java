@@ -48,6 +48,11 @@ private static final long serialVersionUID = 1L;
 			    value = ConstraintMode.CONSTRAINT, name = "venda_compra_loja_virtual_fk"))
 	private VendaCompraLojaVirt vendaCompraLojaVirt;
 	
+	@JsonIgnore
+	@ManyToOne(targetEntity = Pessoa.class)//Muitos endereço  para uma pessoa, para class Pessoa.
+	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id__fk"))
+	private Pessoa empresa;
+	
 	
 	
 	
