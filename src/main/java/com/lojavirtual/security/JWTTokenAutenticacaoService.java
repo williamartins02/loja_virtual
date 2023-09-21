@@ -68,7 +68,7 @@ public class JWTTokenAutenticacaoService {
 	}
 
 	/* Retorna o usuário validado com token ou caso nao seja valido retona null */
-	public Authentication getAuthetication(HttpServletRequest request, HttpServletResponse response.getWriter().write("Token inválido");) throws IOException {
+	public Authentication getAuthetication(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		String token = request.getHeader(HEADER_STRING);
 
