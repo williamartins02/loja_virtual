@@ -48,15 +48,19 @@ public abstract class Pessoa implements Serializable {
         @Column(nullable = false)
         protected String telefone;
         
+        @Column
+    	private String tipoPessoa; 
+        
         @JsonIgnore
         //orphanRemoval -> remover os enderecço em cascata quando a pessoa assoaciada for deletada.
         @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     	private List<Endereco> enderecos = new ArrayList<Endereco>();
         
-    	@JsonIgnore
-    	@ManyToOne(targetEntity = Pessoa.class)//Muitos endereço  para uma pessoa, para class Pessoa.
-    	@JoinColumn(name = "empresa_id", nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
+        @ManyToOne(targetEntity = Pessoa.class)
+    	@JoinColumn(name = "empresa_id", nullable = true, 
+    	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
     	private Pessoa empresa;
+    	
     	
             
         

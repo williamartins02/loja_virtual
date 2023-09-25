@@ -53,14 +53,14 @@ public class NotaFiscalVenda implements Serializable {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name = "venda_compra_loja_virtual_id", nullable = false, foreignKey = @ForeignKey(
-			value = ConstraintMode.CONSTRAINT, name = "venda_compra_loja_virtual_fk"))
+	@JoinColumn(name = "venda_compra_loja_virtual_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "venda_compra_loja_virtual_fk"))
 	private VendaCompraLojaVirt vendaCompraLojaVirt;
 	
 	@JsonIgnore
-	@ManyToOne(targetEntity = Pessoa.class)//Muitos endereço  para uma pessoa, para class Pessoa.
-	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "empresa_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
 	private Pessoa empresa;
-	
 
 }

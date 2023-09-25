@@ -1,3 +1,4 @@
+
 package com.lojavirtual.service;
 
 import java.util.Calendar;
@@ -12,58 +13,66 @@ import com.lojavirtual.model.Usuario;
 import com.lojavirtual.repository.PessoaRepository;
 import com.lojavirtual.repository.UsuarioRepository;
 
+
 @Service
 public class PessoaUserService {
-
+	
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
+	
 	@Autowired
-	private PessoaRepository pessoaRepository;
-
+	private PessoaRepository pesssoaRepository;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	public PessoaJuridica salvarPessoaJuridica(PessoaJuridica pessoaJuridica) {
-
-		pessoaJuridica = pessoaRepository.save(pessoaJuridica);
-
-		Usuario usuarioPj = usuarioRepository.findUserByPessoaPj(pessoaJuridica.getId(), pessoaJuridica.getEmail());
-		/*
-		 * manipulação do cod para remover restrição de constraint estava sendo gerada e
-		 * não pode ter no BD. Banco gera uma chave ao executar o JPA "UNIQUE" na coluna
-		 * de acesso (Usuario_acesso), se tiver a chave no banco pode causar erro ao
-		 * salvar. CONSTRAINT unique_acesso_user UNIQUE(usuario_id, acesso_id)
-		 */
+	
+	
+	public PessoaJuridica salvarPessoaJuridica(PessoaJuridica juridica) {
 		
-		/*
-		 * O comando BEGIN inicia um bloco de transação, ou seja, todos os comandos após
-		 * o comando BEGIN serão executados em uma única transação, até que seja
-		 * fornecido um comando COMMIT ou ROLLBACK explícito.
-		 */
+		juridica = pesssoaRepository.save(juridica);
+		
+		Usuario usuarioPj = usuarioRepository.findUserByPessoa(juridica.getId(), juridica.getEmail());
+		
 		if (usuarioPj == null) {
 			
 			String constraint = usuarioRepository.consultaConstraintAcesso();
 			if (constraint != null) {
-				jdbcTemplate.execute("begin; alter table usuarios_acesso drop constraint " + constraint + "; commit;");
+				jdbcTemplate.execute("begin; alter table usuarios_acesso drop constraint " + constraint +"; commit;");
 			}
-
+			
 			usuarioPj = new Usuario();
 			usuarioPj.setDataAtualSenha(Calendar.getInstance().getTime());
-			usuarioPj.setEmpresa(pessoaJuridica);
-			usuarioPj.setPessoa(pessoaJuridica);
-			usuarioPj.setLogin(pessoaJuridica.getEmail());
-
+			usuarioPj.setEmpresa(juridica);
+			usuarioPj.setPessoa(juridica);
+			usuarioPj.setLogin(juridica.getEmail());
+			
 			String senha = "" + Calendar.getInstance().getTimeInMillis();
 			String senhaCript = new BCryptPasswordEncoder().encode(senha);
-
+			
 			usuarioPj.setSenha(senhaCript);
+			
 			usuarioPj = usuarioRepository.save(usuarioPj);
-
+			
 			usuarioRepository.insereAcessoUserPj(usuarioPj.getId());
-
+			
+			/*Fazer o envio de e-mail do login e da senha*/
+			
 		}
-		return pessoaJuridica;
+		
+		return juridica;
+		
 	}
+	/*
+	 * manipulação do cod para remover restrição de constraint estava sendo gerada e
+	 * não pode ter no BD. Banco gera uma chave ao executar o JPA "UNIQUE" na coluna
+	 * de acesso (Usuario_acesso), se tiver a chave no banco pode causar erro ao
+	 * salvar. CONSTRAINT unique_acesso_user UNIQUE(usuario_id, acesso_id)
+	 */
 
+	/*
+	 * O comando BEGIN inicia um bloco de transação, ou seja, todos os comandos após
+	 * o comando BEGIN serão executados em uma única transação, até que seja
+	 * fornecido um comando COMMIT ou ROLLBACK explícito.
+	 */
 }
